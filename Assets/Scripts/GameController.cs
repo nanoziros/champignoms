@@ -35,8 +35,14 @@ public class GameController : MonoBehaviour
         GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
         if (objs.Length > 1)
         {
-            Destroy(gameObject);
-            return;
+            for (int i = 0; i < objs.Length; i++)
+            {
+                if (gameObject != objs[i])
+                {
+                    Destroy(objs[i]);
+                    break;
+                }
+            }
         }
         DontDestroyOnLoad(gameObject);
         Instance = this;
