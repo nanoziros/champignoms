@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2364147522924179771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7797284984740986760}
+  - component: {fileID: 7010847247291821172}
+  m_Layer: 0
+  m_Name: Rabit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7797284984740986760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364147522924179771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7, y: 3.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2498661295531009762}
+  m_Father: {fileID: 2498661296386081932}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7010847247291821172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364147522924179771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb04bdb662f3418dbab4a296c83baf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 20
+  nutrientPoints: 1000
 --- !u!1 &2498661294925581724
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2498661294925581726}
   - component: {fileID: 2498661294925581725}
+  - component: {fileID: 2498661296628388320}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -82,6 +129,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2498661296628388320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498661294925581724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb04bdb662f3418dbab4a296c83baf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  nutrientPoints: 200
 --- !u!1 &2498661295049010240
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2498661295049010241}
   - component: {fileID: 2498661295049010242}
+  - component: {fileID: 2498661296628388319}
   m_Layer: 0
   m_Name: Circle (3)
   m_TagString: Untagged
@@ -164,6 +226,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2498661296628388319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498661295049010240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb04bdb662f3418dbab4a296c83baf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  nutrientPoints: 200
 --- !u!1 &2498661295273631176
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +322,7 @@ GameObject:
   - component: {fileID: 2498661295531009762}
   - component: {fileID: 2498661295531009763}
   m_Layer: 0
-  m_Name: Rabbit1
+  m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,11 +336,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2498661295531009761}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 4.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 0}
   m_Children: []
-  m_Father: {fileID: 2498661296386081932}
-  m_RootOrder: 3
+  m_Father: {fileID: 7797284984740986760}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2498661295531009763
 SpriteRenderer:
@@ -327,6 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2498661295859854992}
   - component: {fileID: 2498661295859854993}
+  - component: {fileID: 2498661296628388318}
   m_Layer: 0
   m_Name: Circle (1)
   m_TagString: Untagged
@@ -399,6 +476,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2498661296628388318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498661295859855007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb04bdb662f3418dbab4a296c83baf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  nutrientPoints: 200
 --- !u!1 &2498661296056264713
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +551,7 @@ Transform:
   - {fileID: 2498661294925581726}
   - {fileID: 2498661295049010241}
   - {fileID: 2498661295859854992}
-  - {fileID: 2498661295531009762}
+  - {fileID: 7797284984740986760}
   m_Father: {fileID: 2498661295273631177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

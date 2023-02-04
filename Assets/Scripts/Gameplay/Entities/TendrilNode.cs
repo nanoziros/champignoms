@@ -34,7 +34,7 @@ namespace Gameplay.Entities
                 {
                     continue;
                 }
-                if (Vector3.Distance(availableNutrientNode.transform.position, transform.position) <= absorbRadius)
+                if (Vector3.Distance(availableNutrientNode.transform.position, transform.position) <= absorbRadius + availableNutrientNode.radius)
                 {
                     nutrientsAbsorbed += absorbAmount;
                     availableNutrientNode.SubtractNutrients(absorbAmount);
