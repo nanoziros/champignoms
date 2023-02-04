@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Entities;
 using Mushroom;
 using Unity.Mathematics;
 using UnityEngine;
@@ -39,7 +40,7 @@ public class GameplayLogic : MonoBehaviour
         // get the event data, translate it to coords
         var worldPoint = Camera.main.ScreenToWorldPoint(pointerEventData.position);
         worldPoint.z = 0;
-        _mushroomController.AddTendrilNode(_tendrilNodePrefab, worldPoint);
+        _mushroomController.AddTendrilNode(_selectedParentTendril, worldPoint);
         _selectedParentTendril = null;
     }
 }

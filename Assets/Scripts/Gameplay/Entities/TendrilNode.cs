@@ -1,20 +1,22 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Mushroom
+namespace Gameplay.Entities
 {
     public class TendrilNode : MonoBehaviour
     {
+        [SerializeField] private TendrilLine tendrilLinePrefab;
+        [SerializeField] private PointerEventLogic pointerEventLogic;
         [SerializeField] int lifePoints = 2;
-        readonly List<TendrilNode> _childrenTendrilNodes = new List<TendrilNode>();
-        [SerializeField] private PointerEventLogic _pointerEventLogic;
 
+        private readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
+            new Dictionary<TendrilNode, TendrilLine>();
+        
         private void Awake()
         {
-            _pointerEventLogic.SubscribeOnClick(OnClick);
+            pointerEventLogic.SubscribeOnClick(OnClick);
         }
 
         private void OnClick(PointerEventData pointerEventData)
@@ -37,38 +39,42 @@ namespace Mushroom
             {
                 return false;
             }
-            
             if (targetNode == currentNode)
             {
                 track.Add(targetNode);
                 return true;
             }
-
             foreach (var tendrilNode in _childrenTendrilNodes)
             {
-                if (GetPathToNode(tendrilNode, targetNode, ref track))
+                if (GetPathToNode(tendrilNode.Key, targetNode, ref track))
                 {
                     track.Add(currentNode);
                     return true;
                 }
             }
-            
             return false;
         }
 
-        public void AddTendrilNode(TendrilNode tendrilPrefab, TendrilNode parent, Vector3 position)
+        public void AddTendrilNode(TendrilNode tendrilPrefab, Vector3 position)
         {
-            var newTendril = Instantiate(tendrilPrefab, parent.transform, true);
-            newTendril.transform.position = position;
-            newTendril.transform.localScale = Vector3.one;
-            _childrenTendrilNodes.Add(newTendril);
-            // todo: generate tendril line
+            var newTendrilNode = Instantiate(tendrilPrefab, transform, true);
+            newTendrilNode.transform.position = position;
+            newTendrilNode.transform.localScale = Vector3.one;
+
+
+            var newTendrilLine = Instantiate(tendrilLinePrefab, transform, true);
+            newTendrilLine.transform.position = position;
+            newTendrilLine.transform.localScale = Vector3.one;
+
+            newTendrilLine.Initialize(this, newTendrilNode);
+            _childrenTendrilNodes.Add(newTendrilNode, newTendrilLine);
         }
 
         public bool IsTargetPositionUnderTargetDistanceFromThisNodeAndChildren(float minDistance, Vector3 targetPosition)
         {
             return Vector3.Distance(transform.position, targetPosition) <= minDistance ||
-                   _childrenTendrilNodes.Any(tendrilNode => tendrilNode.IsTargetPositionUnderTargetDistanceFromThisNodeAndChildren(minDistance, targetPosition));
+                   _childrenTendrilNodes.Any(
+                       tendrilNode => tendrilNode.Key.IsTargetPositionUnderTargetDistanceFromThisNodeAndChildren(minDistance, targetPosition));
         }
         
         void DestroyTendril()

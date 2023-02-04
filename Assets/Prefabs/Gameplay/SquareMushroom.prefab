@@ -140,5 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa72882a8c1a2483eb6bbba42e6591df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _originNode: {fileID: 0}
-  _availableMass: 0
+  tendrilPrefab: {fileID: 6781077229517938034, guid: 6495092b49231cb4b8990affecc2932a, type: 3}
+  originNode: {fileID: 0}
+  availableMass: 0
+  newTendrilMassCost: 10
+  spawnTendrilNodeCooldown: 1
+  minimumSpawnTendrilDistance: 1
+  maximumSpawnTendrilDistance: 10
