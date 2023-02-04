@@ -147,3 +147,4 @@ MonoBehaviour:
   spawnTendrilNodeCooldown: 1
   minimumSpawnTendrilDistance: 10
   maximumSpawnTendrilDistance: 100
+  maxSpawningGroundHeight: 35
