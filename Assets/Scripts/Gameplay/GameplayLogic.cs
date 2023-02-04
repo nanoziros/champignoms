@@ -16,6 +16,7 @@ public class GameplayLogic : MonoBehaviour
     private TendrilNode _selectedParentTendril;
     public Transform _tendrilParent;
     [SerializeField] private TextMeshProUGUI _mushMassLabel;
+    [SerializeField] private GameObject _gameOverPanel;
 
     public static GameplayLogic Instance { get; private set; }
     private int _maxMushroomMass = 0;
@@ -25,6 +26,7 @@ public class GameplayLogic : MonoBehaviour
         Instance = this;
         _foregroundPointerEvent.SubscribeOnClick(OnForegroundClick);
         _maxMushroomMass = _mushroomController.AvailableMass;
+        _gameOverPanel.SetActive(false);
     }
 
     public void SetParentTendrilNode(TendrilNode tendrilNode)
@@ -59,6 +61,7 @@ public class GameplayLogic : MonoBehaviour
         if (isMushAlive == false)
         {
             // end game
+            _gameOverPanel.SetActive(true);
             return;
         }
 
