@@ -145,5 +145,5 @@ MonoBehaviour:
   availableMass: 0
   newTendrilMassCost: 10
   spawnTendrilNodeCooldown: 1
-  minimumSpawnTendrilDistance: 1
-  maximumSpawnTendrilDistance: 10
+  minimumSpawnTendrilDistance: 10
+  maximumSpawnTendrilDistance: 100

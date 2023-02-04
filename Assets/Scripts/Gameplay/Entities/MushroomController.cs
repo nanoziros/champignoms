@@ -16,18 +16,19 @@ namespace Mushroom
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         bool _inSpawnTendrilCooldown = false;
         
-        public void AddTendrilNode(TendrilNode parentNode, Vector3 targetPosition)
+        public bool TryAddTendrilNode(TendrilNode parentNode, Vector3 targetPosition)
         {
             var newTendrilCost = GetDistanceNormalizedNewTendrilMassCost(parentNode.transform.position, targetPosition);
             if (IsInvalidIsValidNewTendrilSpawn(targetPosition, newTendrilCost))
             {
-                return;
+                return false;
             }
 
             parentNode.AddTendrilNode(tendrilPrefab, targetPosition);
             
             UpdateMass(-newTendrilCost);
             StartCoroutine(SpawnTendrilCooldown());
+            return true;
         }
         
         public void UpdateMass(int mass)
