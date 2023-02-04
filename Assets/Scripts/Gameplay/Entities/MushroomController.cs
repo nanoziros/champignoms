@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Gameplay.Entities;
@@ -15,6 +16,7 @@ namespace Mushroom
         [SerializeField] float minimumSpawnTendrilDistance = 1;
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         [SerializeField] float maxSpawningGroundHeight = 0;
+        [SerializeField] float growthSpeed = 10;
 
         List<TendrilNode> _tendrilNodes;
         bool _inSpawnTendrilCooldown;
@@ -28,17 +30,34 @@ namespace Mushroom
                 return false;
             }
 
-            parentNode.AddTendrilNode(tendrilPrefab, targetPosition);
-            
-            UpdateMass(-newTendrilCost);
+            parentNode.AddTendrilNode(tendrilPrefab, targetPosition, growthSpeed);
+            var distance = Vector3.Distance(targetPosition, parentNode.transform.position);
+            StartCoroutine(UpdateMass(-newTendrilCost, distance / growthSpeed));
             StartCoroutine(SpawnTendrilCooldown());
             _tendrilNodes = GetAllTendrilNodes();
             return true;
         }
         
-        public void UpdateMass(int mass)
+        public IEnumerator UpdateMass(int mass, float totalTime)
         {
-            availableMass = Mathf.Max(0, availableMass + mass);
+            var target = Mathf.Max(0, availableMass + mass);
+            var currentTime = 0.0f;
+            //Debug.Log("current mass: " + availableMass + ", target: " + target);
+            var tick = totalTime / Math.Abs(mass);
+            var sign = Math.Sign(mass);
+            var diff = Math.Abs(mass);
+            while (diff > 0)
+            {
+                currentTime += Time.deltaTime;
+                if (currentTime >= tick)
+                {
+                    availableMass += sign;
+                    diff--;
+                    currentTime -= tick;
+                }
+
+                yield return new WaitForEndOfFrame();
+            }
         }
         
         public List<TendrilNode> GetAllTendrilNodes()

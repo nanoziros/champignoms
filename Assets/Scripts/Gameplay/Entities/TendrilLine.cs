@@ -6,10 +6,9 @@ namespace Gameplay.Entities
     public class TendrilLine : MonoBehaviour
     {
         [SerializeField] LineRenderer lineRenderer;
-        [SerializeField] float growthSpeed = 1;
         Tween _growthAnimation;
         
-        public Tween GrowNode(TendrilNode originNode, TendrilNode targetNode)
+        public Tween GrowNode(TendrilNode originNode, TendrilNode targetNode, float growthSpeed)
         {
             var originPosition = originNode.transform.position;
             var targetPosition = targetNode.transform.position;

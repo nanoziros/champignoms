@@ -61,6 +61,7 @@ public class GameplayLogic : MonoBehaviour
         if (isMushAlive == false)
         {
             // end game
+            _mushMassLabel.text = "YOU DIED";
             _gameOverPanel.SetActive(true);
             return;
         }

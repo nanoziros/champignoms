@@ -81,7 +81,7 @@ namespace Gameplay.Entities
             return false;
         }
 
-        public void AddTendrilNode(TendrilNode tendrilPrefab, Vector3 position)
+        public void AddTendrilNode(TendrilNode tendrilPrefab, Vector3 position, float growthSpeed)
         {
             var newTendrilNode = Instantiate(tendrilPrefab, transform, true);
             newTendrilNode.transform.position = position;
@@ -91,8 +91,8 @@ namespace Gameplay.Entities
             newTendrilLine.transform.position = position;
             newTendrilLine.transform.localScale = Vector3.one;
 
-            var growthTween = newTendrilLine.GrowNode(this, newTendrilNode);
-             newTendrilNode.SetDelayedActivation(growthTween);
+            var growthTween = newTendrilLine.GrowNode(this, newTendrilNode, growthSpeed);
+            newTendrilNode.SetDelayedActivation(growthTween);
              
             _childrenTendrilNodes.Add(newTendrilNode, newTendrilLine);
         }
