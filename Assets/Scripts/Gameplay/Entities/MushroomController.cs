@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Entities;
 using UnityEngine;
 
 namespace Mushroom
 {
     public class MushroomController : MonoBehaviour
     {
-        [SerializeField] TendrilNode nodePrefab;
+        [SerializeField] TendrilNode tendrilPrefab;
         [SerializeField] TendrilNode originNode;
         [SerializeField] int availableMass;
         [SerializeField] int newTendrilMassCost = 10;
@@ -23,7 +24,7 @@ namespace Mushroom
                 return;
             }
 
-            parentNode.AddTendrilNode(nodePrefab, originNode, targetPosition);
+            parentNode.AddTendrilNode(tendrilPrefab, targetPosition);
             
             UpdateMass(-newTendrilCost);
             StartCoroutine(SpawnTendrilCooldown());
