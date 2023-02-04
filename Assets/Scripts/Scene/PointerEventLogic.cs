@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,13 @@ public class PointerEventLogic : MonoBehaviour, IPointerDownHandler, IPointerUpH
 {
     private float _currentDuration = 0.0f;
     private bool _isPointerDown = false;
-    
+    private Action<PointerEventData> _onClick;
+
+    public void SubscribeOnClick(Action<PointerEventData> onClick)
+    {
+        _onClick = onClick;
+    }
+
     void Update()
     {
         if (_isPointerDown)
@@ -24,7 +31,7 @@ public class PointerEventLogic : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("OnPointerUp");
         _isPointerDown = false;
+        _onClick?.Invoke(eventData);
     }
 }
