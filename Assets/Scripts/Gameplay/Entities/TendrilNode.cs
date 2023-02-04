@@ -12,15 +12,36 @@ namespace Gameplay.Entities
         [SerializeField] PolygonCollider2D spriteCollider;
         [SerializeField] TendrilLine tendrilLinePrefab;
         [SerializeField] PointerEventLogic pointerEventLogic;
-        [SerializeField] float absorbRadius = 10;
         [SerializeField] int lifePoints = 2;
-        
         readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
             new Dictionary<TendrilNode, TendrilLine>();
 
+        public bool IsEnabled => spriteRenderer.enabled;
+        
         void Awake()
         {
             pointerEventLogic.SubscribeOnClick(OnClick);
+        }
+        
+        public float TryGetNutrientsFromSurrounding(List<NutrientNode> availableNutrientNodes,float absorbStrength, float absorbRadius, float deltaTime)
+        {
+            var nutrientsAbsorbed = 0f;
+            var absorbAmount = absorbStrength * deltaTime;
+
+            foreach (var availableNutrientNode in availableNutrientNodes)
+            {
+                if (availableNutrientNode == null)
+                {
+                    continue;
+                }
+                if (Vector3.Distance(availableNutrientNode.transform.position, transform.position) <= absorbRadius)
+                {
+                    nutrientsAbsorbed += absorbAmount;
+                    availableNutrientNode.SubtractNutrients(absorbAmount);
+                }
+            }
+
+            return nutrientsAbsorbed;
         }
 
         void OnClick(PointerEventData pointerEventData)
