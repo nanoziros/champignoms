@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,6 @@ public class DaytimeLogic : MonoBehaviour
        
         _nextTimeCheckInSeconds += _secondsPerDay * 0.5f;
         _isDaylight = _isDaylight == false;
-        _daytimeImageLayer.color = _isDaylight ? _dayColor : _nightColor;
+        _daytimeImageLayer.DOColor(_isDaylight ? _dayColor : _nightColor, 2.0f);
     }
 }
