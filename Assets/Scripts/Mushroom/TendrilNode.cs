@@ -5,19 +5,28 @@ namespace Mushroom
 {
     public class TendrilNode : MonoBehaviour
     {
-        private readonly List<TendrilNode> _childrenNodes = new List<TendrilNode>();
-
-        public void AddTendril(TendrilNode tendrilNode)
+        [SerializeField] int _lifePoints = 2;
+        readonly List<TendrilNode> _childrenTendrilNodes = new List<TendrilNode>();
+        
+        public void RemoveLifePoints(int damage)
         {
-            _childrenNodes.Add(tendrilNode);
+            _lifePoints -= damage;
+            if (_lifePoints <= 0)
+            {
+                DestroyTendril();
+            }
         }
 
-        public void RemoveTendril(TendrilNode tendrilNode)
+        void DestroyTendril()
         {
-            if (_childrenNodes.Contains(tendrilNode))
-            {
-                _childrenNodes.Remove(tendrilNode);
-            }
+            Destroy(gameObject);
+        }
+        
+        public void AddTendril(TendrilNode tendrilPrefab, Vector3 position)
+        {
+            var newTendril = Instantiate(tendrilPrefab, transform);
+            newTendril.transform.position = position;
+            _childrenTendrilNodes.Add(newTendril);
         }
     }
 }

@@ -4,7 +4,6 @@ namespace Mushroom
 {
     public class MushroomController : MonoBehaviour
     {
-        [SerializeField] Transform _tendrilNodeParent; 
         [SerializeField] TendrilNode _originNode;
         [SerializeField] int _availableMass; 
         
@@ -13,12 +12,9 @@ namespace Mushroom
             _availableMass = Mathf.Max(0, _availableMass + mass);
         }
 
-        public void AddTendril(TendrilNode originNode, Vector3 position)
+        public void AddTendril(TendrilNode parentNode, Vector3 position)
         {
-            var newTendril = Instantiate(_originNode, _tendrilNodeParent);
-            newTendril.transform.position = position;
-            newTendril.transform.SetParent(_tendrilNodeParent);
-            originNode.AddTendril(originNode);
+            parentNode.AddTendril(_originNode, position);
         }
     }
 }
