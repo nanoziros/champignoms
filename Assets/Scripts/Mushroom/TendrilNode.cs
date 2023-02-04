@@ -22,7 +22,7 @@ namespace Mushroom
             Destroy(gameObject);
         }
         
-        public void AddTendril(TendrilNode tendrilPrefab, Vector3 position)
+        public void AddTendrilNode(TendrilNode tendrilPrefab, Vector3 position)
         {
             var newTendril = Instantiate(tendrilPrefab, transform);
             newTendril.transform.position = position;

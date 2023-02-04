@@ -12,9 +12,9 @@ namespace Mushroom
             _availableMass = Mathf.Max(0, _availableMass + mass);
         }
 
-        public void AddTendril(TendrilNode parentNode, Vector3 position)
+        public void AddTendrilNode(TendrilNode parentNode, Vector3 position)
         {
-            parentNode.AddTendril(_originNode, position);
+            parentNode.AddTendrilNode(_originNode, position);
         }
     }
 }
