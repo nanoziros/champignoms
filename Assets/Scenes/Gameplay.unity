@@ -197,6 +197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1171824381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1171824381, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
+  m_PrefabInstance: {fileID: 1798590517572737849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1329319670 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1076799349, guid: ad9318abb07bb4a47844f7a5546ca51f, type: 3}
@@ -450,6 +455,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 412765046}
+    - target: {fileID: 1360298927, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 412765046}
+    - target: {fileID: 1846361223, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 412765046}
     - target: {fileID: 1798590516152071922, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
       propertyPath: m_Name
       value: Hud
@@ -595,6 +608,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2498661295273631178, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: _gameOverPanel
+      value: 
+      objectReference: {fileID: 1171824381}
     - target: {fileID: 2498661295273631178, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
       propertyPath: _mushMassLabel
       value: 

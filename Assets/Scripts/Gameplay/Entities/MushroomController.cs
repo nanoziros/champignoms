@@ -50,8 +50,7 @@ namespace Mushroom
         {
             if (availableMass < newTendrilCost)
             {
-                Debug.Log($"Not enough mass to spawn tendril. Cost ({newTendrilCost})");
-                return true;
+                Debug.Log($"Not enough mass to spawn tendril, ready to DIE? Cost ({newTendrilCost})");
             }
             if (targetPosition.y >= maxSpawningGroundHeight)
             {
