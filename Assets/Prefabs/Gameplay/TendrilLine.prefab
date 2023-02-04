@@ -152,4 +152,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5424677481455953958}
-  growthSpeed: 3
+  growthSpeed: 10
