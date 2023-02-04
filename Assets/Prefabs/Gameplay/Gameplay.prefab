@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _daytimeImageLayer: {fileID: 0}
   _timeFactor: 720
-  _dayColor: {r: 1, g: 0.99415374, b: 0, a: 0.039215688}
+  _dayColor: {r: 0.9339623, g: 0.9328013, b: 0.6379139, a: 0.039215688}
   _nightColor: {r: 0.16078432, g: 0.14901961, b: 0.25490198, a: 0.39215687}
   _daytimeLabel: {fileID: 0}
 --- !u!1 &2498661295531009761

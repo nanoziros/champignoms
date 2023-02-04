@@ -18,6 +18,8 @@ public class DaytimeLogic : MonoBehaviour
     private float _currentTimeInSeconds = 0.0f;
     private bool _gameplayRunning = false;
     private DateTime _currentDateTime;
+    private bool _isDaylight;
+    private float _nextTimeCheckInSeconds = 0.0f;
     
     void Start()
     {
@@ -25,6 +27,8 @@ public class DaytimeLogic : MonoBehaviour
         _daytimeImageLayer.color = _dayColor;
         _currentDateTime = new DateTime();
         _currentTimeInSeconds = _secondsPerDay * 0.5f;
+        _nextTimeCheckInSeconds = _currentTimeInSeconds + _secondsPerDay * (7.0f / 24);
+        _isDaylight = true;
         StartGameplay();
     }
 
@@ -47,5 +51,10 @@ public class DaytimeLogic : MonoBehaviour
 
         _currentTimeInSeconds += Time.deltaTime * _timeFactor;
         _daytimeLabel.text = _currentDateTime.AddSeconds(_currentTimeInSeconds).ToShortTimeString();
+        if (!(_nextTimeCheckInSeconds <= _currentTimeInSeconds)) return;
+       
+        _nextTimeCheckInSeconds += _secondsPerDay * 0.5f;
+        _isDaylight = _isDaylight == false;
+        _daytimeImageLayer.color = _isDaylight ? _dayColor : _nightColor;
     }
 }
