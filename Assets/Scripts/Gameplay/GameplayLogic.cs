@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Gameplay.Entities;
 using Mushroom;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,13 +15,16 @@ public class GameplayLogic : MonoBehaviour
     public TendrilNode _tendrilNodePrefab;
     private TendrilNode _selectedParentTendril;
     public Transform _tendrilParent;
+    [SerializeField] private TextMeshProUGUI _mushMassLabel;
 
     public static GameplayLogic Instance { get; private set; }
+    private int _maxMushroomMass = 0;
     
     private void Awake()
     {
         Instance = this;
         _foregroundPointerEvent.SubscribeOnClick(OnForegroundClick);
+        _maxMushroomMass = _mushroomController.AvailableMass;
     }
 
     public void SetParentTendrilNode(TendrilNode tendrilNode)
@@ -47,5 +51,17 @@ public class GameplayLogic : MonoBehaviour
             return;
         }
         _selectedParentTendril = null;
+    }
+
+    private void Update()
+    {
+        var isMushAlive = _mushroomController.AvailableMass > 0;
+        if (isMushAlive == false)
+        {
+            // end game
+            return;
+        }
+
+        _mushMassLabel.text = "Mushroom Mass : " + _mushroomController.AvailableMass + "/" + _maxMushroomMass;
     }
 }

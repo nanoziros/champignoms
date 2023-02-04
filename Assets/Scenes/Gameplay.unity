@@ -175,6 +175,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1bdbe497830f148a0935b9ad53a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &626505165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 626505165, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
+  m_PrefabInstance: {fileID: 1798590517572737849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &938766653 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 938766653, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
@@ -585,6 +596,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2498661295273631178, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: _mushMassLabel
+      value: 
+      objectReference: {fileID: 626505165}
+    - target: {fileID: 2498661295273631178, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
       propertyPath: _foregroundPointerEvent
       value: 
       objectReference: {fileID: 305492364}
@@ -596,30 +611,6 @@ PrefabInstance:
       propertyPath: _daytimeImageLayer
       value: 
       objectReference: {fileID: 1329319670}
-    - target: {fileID: 2498661295531009761, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_Name
-      value: Rabbit1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498661295531009763, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 65b1debaffc8a4c4ab842c7c4a0a1790, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
 --- !u!1001 &4238395143911993093

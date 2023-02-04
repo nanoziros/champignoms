@@ -17,7 +17,8 @@ namespace Mushroom
         [SerializeField] float maxSpawningGroundHeight = 0;
         
         bool _inSpawnTendrilCooldown;
-        
+        public int AvailableMass => availableMass;
+
         public bool TryAddTendrilNode(TendrilNode parentNode, Vector3 targetPosition)
         {
             var newTendrilCost = GetDistanceNormalizedNewTendrilMassCost(parentNode.transform.position, targetPosition);
