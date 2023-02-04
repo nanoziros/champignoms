@@ -72,7 +72,12 @@ namespace Gameplay.Entities
 
         public bool IsTargetPositionUnderTargetDistanceFromThisNodeAndChildren(float minDistance, Vector3 targetPosition)
         {
-            return Vector3.Distance(transform.position, targetPosition) <= minDistance ||
+            var distance = Vector3.Distance(transform.position, targetPosition);
+            if (distance <= minDistance)
+            {
+                Debug.Log($"invalid distance: {distance}");
+            }
+            return distance <= minDistance ||
                    _childrenTendrilNodes.Any(
                        tendrilNode => tendrilNode.Key.IsTargetPositionUnderTargetDistanceFromThisNodeAndChildren(minDistance, targetPosition));
         }

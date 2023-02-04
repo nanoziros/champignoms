@@ -40,7 +40,12 @@ public class GameplayLogic : MonoBehaviour
         // get the event data, translate it to coords
         var worldPoint = Camera.main.ScreenToWorldPoint(pointerEventData.position);
         worldPoint.z = 0;
-        _mushroomController.AddTendrilNode(_selectedParentTendril, worldPoint);
+        
+        var tendrilAdded = _mushroomController.TryAddTendrilNode(_selectedParentTendril, worldPoint);
+        if (!tendrilAdded)
+        {
+            return;
+        }
         _selectedParentTendril = null;
     }
 }
