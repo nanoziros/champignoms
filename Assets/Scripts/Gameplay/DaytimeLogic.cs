@@ -15,6 +15,8 @@ public class DaytimeLogic : MonoBehaviour
     [SerializeField] private Color _dayColor;
     [SerializeField] private Color _nightColor;
     [SerializeField] private TextMeshProUGUI _daytimeLabel;
+    [SerializeField] private AudioClip _dayAudioClip;
+    [SerializeField] private AudioClip _nightAudioClip;
     
     private float _currentTimeInSeconds = 0.0f;
     private bool _gameplayRunning = false;
@@ -26,6 +28,7 @@ public class DaytimeLogic : MonoBehaviour
     {
         _currentTimeInSeconds = 0.0f;
         _daytimeImageLayer.color = _dayColor;
+        SoundController.Instance.Play(_dayAudioClip);
         _currentDateTime = new DateTime();
         _currentTimeInSeconds = _secondsPerDay * 0.5f;
         _nextTimeCheckInSeconds = _currentTimeInSeconds + _secondsPerDay * (7.0f / 24);
@@ -57,5 +60,6 @@ public class DaytimeLogic : MonoBehaviour
         _nextTimeCheckInSeconds += _secondsPerDay * 0.5f;
         _isDaylight = _isDaylight == false;
         _daytimeImageLayer.DOColor(_isDaylight ? _dayColor : _nightColor, 2.0f);
+        SoundController.Instance.Stop(true, _isDaylight ? _dayAudioClip : _nightAudioClip);
     }
 }
