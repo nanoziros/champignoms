@@ -8,27 +8,27 @@ namespace Gameplay.Entities
 {
     public class TendrilNode : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private PolygonCollider2D spriteCollider;
-        [SerializeField] private TendrilLine tendrilLinePrefab;
-        [SerializeField] private PointerEventLogic pointerEventLogic;
+        [SerializeField] SpriteRenderer spriteRenderer;
+        [SerializeField] PolygonCollider2D spriteCollider;
+        [SerializeField] TendrilLine tendrilLinePrefab;
+        [SerializeField] PointerEventLogic pointerEventLogic;
+        [SerializeField] float absorbRadius = 10;
         [SerializeField] int lifePoints = 2;
         
         readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
             new Dictionary<TendrilNode, TendrilLine>();
-        
-        
-        private void Awake()
+
+        void Awake()
         {
             pointerEventLogic.SubscribeOnClick(OnClick);
         }
 
-        private void OnClick(PointerEventData pointerEventData)
+        void OnClick(PointerEventData pointerEventData)
         {
             GameplayLogic.Instance.SetParentTendrilNode(this);
         }
-
-        public void SetDelayedActivation(Tween delayTween)
+        
+        void SetDelayedActivation(Tween delayTween)
         {
             spriteRenderer.enabled = false;
             spriteCollider.enabled = false;
@@ -46,6 +46,17 @@ namespace Gameplay.Entities
             {
                 DestroyTendril();
             }
+        }
+        
+        public List<TendrilNode> GetAllTendrilNodes()
+        {
+            var childNodes = new List<TendrilNode>();
+            foreach (var childrenTendril in _childrenTendrilNodes)
+            {
+                childNodes.Add(childrenTendril.Key);
+                childNodes.AddRange(childrenTendril.Key.GetAllTendrilNodes());
+            }
+            return childNodes;
         }
 
         public bool GetPathToNode(TendrilNode currentNode, TendrilNode targetNode, ref List<TendrilNode> track)

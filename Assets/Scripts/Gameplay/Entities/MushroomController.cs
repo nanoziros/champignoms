@@ -15,7 +15,8 @@ namespace Mushroom
         [SerializeField] float minimumSpawnTendrilDistance = 1;
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         [SerializeField] float maxSpawningGroundHeight = 0;
-        
+
+        List<TendrilNode> _tendrilNodes;
         bool _inSpawnTendrilCooldown;
         public int AvailableMass => availableMass;
 
@@ -31,12 +32,18 @@ namespace Mushroom
             
             UpdateMass(-newTendrilCost);
             StartCoroutine(SpawnTendrilCooldown());
+            _tendrilNodes = GetAllTendrilNodes();
             return true;
         }
         
         public void UpdateMass(int mass)
         {
             availableMass = Mathf.Max(0, availableMass + mass);
+        }
+        
+        public List<TendrilNode> GetAllTendrilNodes()
+        {
+            return originNode.GetAllTendrilNodes();
         }
 
         public List<TendrilNode> GetPathToNode(TendrilNode targetNode)

@@ -16,8 +16,11 @@ namespace Gameplay.Entities
             
             lineRenderer.SetPosition(0, originPosition);
             lineRenderer.SetPosition(1, originPosition);
+
+            _growthAnimation = DOTween
+                .To(() => lineRenderer.GetPosition(1), x => lineRenderer.SetPosition(1, x), targetPosition, growthSpeed)
+                .SetEase(Ease.Linear).SetSpeedBased().Play();
             
-            _growthAnimation = DOTween.To(() => lineRenderer.GetPosition(1), (x) => lineRenderer.SetPosition(1, x), targetPosition, growthSpeed).SetSpeedBased().Play();
             return _growthAnimation;
         }
     }
