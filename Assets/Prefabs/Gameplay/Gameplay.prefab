@@ -557,6 +557,10 @@ PrefabInstance:
       propertyPath: availableMass
       value: 2000
       objectReference: {fileID: 0}
+    - target: {fileID: 6125773634463123328, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 231822d9183791743b2b37b96562840e, type: 3}
     - target: {fileID: 6125773634463123330, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
       propertyPath: m_Name
       value: SquareMushroom
@@ -631,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6125773634463123331, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 6.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 6125773634463123331, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -644,6 +648,14 @@ PrefabInstance:
     - target: {fileID: 6125773634463123331, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125773634463123334, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125773634463123334, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d99ad347bc55c348b1ae5c5b7ef0b31, type: 3}

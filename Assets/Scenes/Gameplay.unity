@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 2011834896}
-  bottomLimit: -450
+  bottomLimit: -325
   SmoothTime: 2
   direction: {x: 0, y: 0, z: 0}
 --- !u!20 &2011834896
@@ -596,6 +596,30 @@ PrefabInstance:
       propertyPath: _daytimeImageLayer
       value: 
       objectReference: {fileID: 1329319670}
+    - target: {fileID: 2498661295531009761, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: m_Name
+      value: Rabbit1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498661295531009762, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498661295531009763, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 65b1debaffc8a4c4ab842c7c4a0a1790, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
 --- !u!1001 &4238395143911993093
