@@ -11,32 +11,34 @@ public class SoundController : MonoBehaviour
     private float _defaultVolume = 0.0f;
 
     public bool IsEnabled { get => _audioMusicSource.enabled; set => _audioMusicSource.enabled = value; }
+    public static SoundController Instance { get; private set; }
 
-    void Start()
+    void Awake()
     {
+        Instance = this;
         _audioMusicSource = GetComponent<AudioSource>();
         _defaultVolume = _audioMusicSource.volume;
     }    
 
     public void Play(AudioClip clip)
     {
-        StopCoroutine(FadeOut());
+        StopCoroutine(FadeOut(null));
         _audioMusicSource.volume = _defaultVolume;
         _audioMusicSource.clip = clip;
         _audioMusicSource.Play();
     }
 
-    public void Stop(bool fadeOut = true)
+    public void Stop(bool fadeOut = true, AudioClip nextTrack = null)
     {
         if (fadeOut)
         {
-            StartCoroutine(FadeOut());
+            StartCoroutine(FadeOut(nextTrack));
             return;
         }
         _audioMusicSource.Stop();
     }
 
-    public IEnumerator FadeOut()
+    private IEnumerator FadeOut(AudioClip nextTrack)
     {
         while (_audioMusicSource.volume > 0)
         {
@@ -47,5 +49,10 @@ public class SoundController : MonoBehaviour
 
         _audioMusicSource.Stop();
         _audioMusicSource.volume = _defaultVolume;
+        if (nextTrack != null)
+        {
+            _audioMusicSource.clip = nextTrack;
+            _audioMusicSource.Play();
+        }
     }
 }
