@@ -56,9 +56,9 @@ namespace Mushroom
             return false;
         }
 
-        public void AddTendrilNode(TendrilNode tendrilPrefab, Vector3 position)
+        public void AddTendrilNode(TendrilNode tendrilPrefab, TendrilNode parent, Vector3 position)
         {
-            var newTendril = Instantiate(tendrilPrefab, transform);
+            var newTendril = Instantiate(tendrilPrefab, parent.transform, true);
             newTendril.transform.position = position;
             newTendril.transform.localScale = Vector3.one;
             _childrenTendrilNodes.Add(newTendril);

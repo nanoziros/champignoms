@@ -6,6 +6,7 @@ namespace Mushroom
 {
     public class MushroomController : MonoBehaviour
     {
+        [SerializeField] TendrilNode nodePrefab;
         [SerializeField] TendrilNode originNode;
         [SerializeField] int availableMass;
         [SerializeField] int newTendrilMassCost = 10;
@@ -22,7 +23,7 @@ namespace Mushroom
                 return;
             }
 
-            parentNode.AddTendrilNode(originNode, targetPosition);
+            parentNode.AddTendrilNode(nodePrefab, originNode, targetPosition);
             
             UpdateMass(-newTendrilCost);
             StartCoroutine(SpawnTendrilCooldown());
