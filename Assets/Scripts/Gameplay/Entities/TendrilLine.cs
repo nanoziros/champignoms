@@ -8,7 +8,6 @@ namespace Gameplay.Entities
         [SerializeField] LineRenderer lineRenderer;
         [SerializeField] float growthSpeed = 1;
         Tween _growthAnimation;
-        public bool IsAnimating => _growthAnimation != null && _growthAnimation.IsPlaying();
         
         public Tween GrowNode(TendrilNode originNode, TendrilNode targetNode)
         {
