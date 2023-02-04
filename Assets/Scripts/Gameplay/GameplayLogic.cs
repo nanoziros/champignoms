@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Entities;
 using Mushroom;
 using TMPro;
@@ -19,6 +20,8 @@ public class GameplayLogic : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private DaytimeLogic _daytimeLogic;
 
+    private List<NutrientNode> _nutrientNodes = new List<NutrientNode>();
+    
     public static GameplayLogic Instance { get; private set; }
     private int _maxMushroomMass = 0;
     
@@ -28,8 +31,10 @@ public class GameplayLogic : MonoBehaviour
         _foregroundPointerEvent.SubscribeOnClick(OnForegroundClick);
         _maxMushroomMass = _mushroomController.AvailableMass;
         _gameOverPanel.SetActive(false);
-    }
 
+        _nutrientNodes = GetComponentsInChildren<NutrientNode>().ToList();
+    }
+    
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
         _selectedParentTendril = tendrilNode;
@@ -59,6 +64,7 @@ public class GameplayLogic : MonoBehaviour
     private void Update()
     {
         var isMushAlive = _mushroomController.AvailableMass > 0;
+        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         if (isMushAlive == false)
         {
             // end game

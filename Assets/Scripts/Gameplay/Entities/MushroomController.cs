@@ -10,17 +10,34 @@ namespace Mushroom
     {
         [SerializeField] TendrilNode tendrilPrefab;
         [SerializeField] TendrilNode originNode;
-        [SerializeField] int availableMass;
+        [SerializeField] float availableMass;
         [SerializeField] int newTendrilMassCost = 10;
         [SerializeField] float spawnTendrilNodeCooldown = 1;
         [SerializeField] float minimumSpawnTendrilDistance = 1;
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         [SerializeField] float maxSpawningGroundHeight = 0;
         [SerializeField] float growthSpeed = 10;
+        [SerializeField] float absorbStrength = 10;
+        [SerializeField] float absorbRadius = 10;
 
-        List<TendrilNode> _tendrilNodes;
+        List<TendrilNode> _tendrilNodes = new List<TendrilNode>();
         bool _inSpawnTendrilCooldown;
-        public int AvailableMass => availableMass;
+        public int AvailableMass => Mathf.RoundToInt(availableMass);
+
+        public void UpdateMushroomNodes(List<NutrientNode> nutrientNodes, float deltaTime)
+        {
+            var absorbedNutrients = 0f;
+            foreach (var tendrilNode in _tendrilNodes)
+            {
+                if (!tendrilNode.IsEnabled)
+                {
+                    continue;
+                }
+                absorbedNutrients += tendrilNode.TryGetNutrientsFromSurrounding(nutrientNodes, absorbStrength, absorbRadius, deltaTime);
+            }
+
+            availableMass += absorbedNutrients;
+        }
 
         public bool TryAddTendrilNode(TendrilNode parentNode, Vector3 targetPosition)
         {
