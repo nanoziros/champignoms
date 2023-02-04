@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DaytimeLogic : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class DaytimeLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _daytimeLabel;
     [SerializeField] private AudioClip _dayAudioClip;
     [SerializeField] private AudioClip _nightAudioClip;
+    [SerializeField] private AudioClip _nightSecondAudioClip;
     
     private float _currentTimeInSeconds = 0.0f;
     private bool _gameplayRunning = false;
@@ -60,6 +62,7 @@ public class DaytimeLogic : MonoBehaviour
         _nextTimeCheckInSeconds += _secondsPerDay * 0.5f;
         _isDaylight = _isDaylight == false;
         _daytimeImageLayer.DOColor(_isDaylight ? _dayColor : _nightColor, 2.0f);
-        SoundController.Instance.Stop(true, _isDaylight ? _dayAudioClip : _nightAudioClip);
+        var nightClip = Random.Range(0.0f, 1.0f) > 0.5f ? _nightSecondAudioClip : _nightAudioClip;
+        SoundController.Instance.Stop(true, _isDaylight ? _dayAudioClip : nightClip);
     }
 }
