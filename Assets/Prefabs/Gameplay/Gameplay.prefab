@@ -216,6 +216,8 @@ MonoBehaviour:
   _tendrilNodePrefab: {fileID: 6781077229517938034, guid: 6495092b49231cb4b8990affecc2932a, type: 3}
   _tendrilParent: {fileID: 2498661296056264714}
   _mushMassLabel: {fileID: 0}
+  _gameOverPanel: {fileID: 0}
+  _daytimeLogic: {fileID: 2498661295273631179}
 --- !u!114 &2498661295273631179
 MonoBehaviour:
   m_ObjectHideFlags: 0

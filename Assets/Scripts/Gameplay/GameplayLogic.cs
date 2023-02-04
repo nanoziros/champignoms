@@ -17,6 +17,7 @@ public class GameplayLogic : MonoBehaviour
     public Transform _tendrilParent;
     [SerializeField] private TextMeshProUGUI _mushMassLabel;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private DaytimeLogic _daytimeLogic;
 
     public static GameplayLogic Instance { get; private set; }
     private int _maxMushroomMass = 0;
@@ -61,6 +62,7 @@ public class GameplayLogic : MonoBehaviour
         if (isMushAlive == false)
         {
             // end game
+            _daytimeLogic.PauseGameplay();
             _mushMassLabel.text = "YOU DIED";
             _gameOverPanel.SetActive(true);
             return;
