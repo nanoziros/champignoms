@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7043aeb4a61564040a007264941577bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6781077229517938035}
+  spriteCollider: {fileID: 8109631086315995441}
   tendrilLinePrefab: {fileID: 1266719526070054904, guid: 89203d091cb55466aa4f931f5cdaf3e0, type: 3}
   pointerEventLogic: {fileID: -9011118003149067747}
   lifePoints: 2

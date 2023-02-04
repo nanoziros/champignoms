@@ -14,7 +14,9 @@ namespace Mushroom
         [SerializeField] float spawnTendrilNodeCooldown = 1;
         [SerializeField] float minimumSpawnTendrilDistance = 1;
         [SerializeField] float maximumSpawnTendrilDistance = 10;
-        bool _inSpawnTendrilCooldown = false;
+        [SerializeField] float maxSpawningGroundHeight = 0;
+        
+        bool _inSpawnTendrilCooldown;
         
         public bool TryAddTendrilNode(TendrilNode parentNode, Vector3 targetPosition)
         {
@@ -48,6 +50,11 @@ namespace Mushroom
             if (availableMass < newTendrilCost)
             {
                 Debug.Log($"Not enough mass to spawn tendril. Cost ({newTendrilCost})");
+                return true;
+            }
+            if (targetPosition.y >= maxSpawningGroundHeight)
+            {
+                Debug.Log($"Trying to spawn the tendrils at ({targetPosition.y}), which is above the min height ({maxSpawningGroundHeight})");
                 return true;
             }
             if (_inSpawnTendrilCooldown)

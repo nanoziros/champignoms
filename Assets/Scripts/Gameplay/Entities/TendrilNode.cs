@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,12 +8,15 @@ namespace Gameplay.Entities
 {
     public class TendrilNode : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private PolygonCollider2D spriteCollider;
         [SerializeField] private TendrilLine tendrilLinePrefab;
         [SerializeField] private PointerEventLogic pointerEventLogic;
         [SerializeField] int lifePoints = 2;
-
-        private readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
+        
+        readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
             new Dictionary<TendrilNode, TendrilLine>();
+        
         
         private void Awake()
         {
@@ -22,6 +26,17 @@ namespace Gameplay.Entities
         private void OnClick(PointerEventData pointerEventData)
         {
             GameplayLogic.Instance.SetParentTendrilNode(this);
+        }
+
+        public void SetDelayedActivation(Tween delayTween)
+        {
+            spriteRenderer.enabled = false;
+            spriteCollider.enabled = false;
+            delayTween.OnComplete(() =>
+            {
+                spriteRenderer.enabled = true;
+                spriteCollider.enabled = true; 
+            });
         }
 
         public void RemoveLifePoints(int damage)
@@ -61,12 +76,13 @@ namespace Gameplay.Entities
             newTendrilNode.transform.position = position;
             newTendrilNode.transform.localScale = Vector3.one;
 
-
             var newTendrilLine = Instantiate(tendrilLinePrefab, transform, true);
             newTendrilLine.transform.position = position;
             newTendrilLine.transform.localScale = Vector3.one;
 
-            newTendrilLine.Initialize(this, newTendrilNode);
+            var growthTween = newTendrilLine.GrowNode(this, newTendrilNode);
+             newTendrilNode.SetDelayedActivation(growthTween);
+             
             _childrenTendrilNodes.Add(newTendrilNode, newTendrilLine);
         }
 
@@ -84,6 +100,7 @@ namespace Gameplay.Entities
         
         void DestroyTendril()
         {
+            //TODO: we might need to kill all ongoing transitions on this and childobjects here
             Destroy(gameObject);
         }
     }
