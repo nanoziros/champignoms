@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mushroom
@@ -13,11 +14,6 @@ namespace Mushroom
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         bool _inSpawnTendrilCooldown = false;
         
-        public void UpdateMass(int mass)
-        {
-            availableMass = Mathf.Max(0, availableMass + mass);
-        }
-
         public void AddTendrilNode(TendrilNode parentNode, Vector3 targetPosition)
         {
             var newTendrilCost = GetDistanceNormalizedNewTendrilMassCost(parentNode.transform.position, targetPosition);
@@ -31,28 +27,37 @@ namespace Mushroom
             UpdateMass(-newTendrilCost);
             StartCoroutine(SpawnTendrilCooldown());
         }
+        
+        public void UpdateMass(int mass)
+        {
+            availableMass = Mathf.Max(0, availableMass + mass);
+        }
 
-        private bool IsInvalidIsValidNewTendrilSpawn(Vector3 targetPosition, int newTendrilCost)
+        public List<TendrilNode> GetPathToNode(TendrilNode targetNode)
+        {
+            var path = new List<TendrilNode>();
+            originNode.GetPathToNode(originNode, targetNode, ref path);
+            return path;
+        }
+        
+        bool IsInvalidIsValidNewTendrilSpawn(Vector3 targetPosition, int newTendrilCost)
         {
             if (availableMass < newTendrilCost)
             {
                 Debug.Log($"Not enough mass to spawn tendril. Cost ({newTendrilCost})");
                 return true;
             }
-
             if (_inSpawnTendrilCooldown)
             {
                 Debug.Log("Tendril spawn in cooldown");
                 return true;
             }
-
             if (originNode.IsTargetPositionUnderTargetDistanceFromThisNodeAndChildren(minimumSpawnTendrilDistance,
                 targetPosition))
             {
                 Debug.Log("Tried to spawn tendril too close to parent node");
                 return true;
             }
-
             return false;
         }
 
