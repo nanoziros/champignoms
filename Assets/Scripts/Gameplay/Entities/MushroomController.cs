@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Gameplay.Entities;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,7 +25,10 @@ namespace Mushroom
         [SerializeField] float absorbRadius = 10;
 
         [SerializeField] private PointerEventLogic _poisonButtonPointerEventLogic;
-        
+        [SerializeField] private GameObject particleParent;
+        [SerializeField] float poisonAnimDuration = 1;
+        [SerializeField] float poisonStrenght = 1;
+
         List<TendrilNode> _tendrilNodes = new List<TendrilNode>();
         bool _inSpawnTendrilCooldown;
         public int AvailableMass => Mathf.RoundToInt(availableMass);
@@ -33,6 +37,7 @@ namespace Mushroom
         public void Initialize()
         {
             _poisonButtonPointerEventLogic.SubscribeOnClick(OnClick);
+            _poisonButtonPointerEventLogic.transform.DOPunchScale(Vector3.one * poisonStrenght, poisonAnimDuration, 1).SetLoops(-1);
         }
         
         void OnClick(PointerEventData pointerEventData)
@@ -148,6 +153,7 @@ namespace Mushroom
         public void EnableNightActions(bool isNight, int nightDamage)
         {
             _poisonButtonPointerEventLogic.gameObject.SetActive(isNight);
+            particleParent.gameObject.gameObject.SetActive(isNight);
             if (isNight)
             {
                 _nightDamageRoutine = StartCoroutine(NightTemperatureDamageRoutine((nightDamage)));
