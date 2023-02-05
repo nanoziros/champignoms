@@ -6,7 +6,9 @@ public class SoundController : MonoBehaviour
 {
     [SerializeField]
     private float _fadeOutTime = 1.5f;
-
+    [SerializeField]
+    private AudioClip[] clips;
+    private int sfxIndex = 0;
     private AudioSource _audioMusicSource;
     private float _defaultVolume = 0.0f;
 
@@ -54,5 +56,14 @@ public class SoundController : MonoBehaviour
             _audioMusicSource.clip = nextTrack;
             _audioMusicSource.Play();
         }
+    }
+
+    public void PlaySfx() {
+        int lastIndex = sfxIndex;
+        while(sfxIndex == lastIndex) 
+        {
+            sfxIndex = Random.Range(0, clips.Length);
+        }
+        _audioMusicSource.PlayOneShot(clips[sfxIndex], 0.4f);
     }
 }
