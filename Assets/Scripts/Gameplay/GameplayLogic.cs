@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Gameplay.Entities;
 using Mushroom;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameplayLogic : MonoBehaviour
 {
@@ -19,11 +21,13 @@ public class GameplayLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _mushMassLabel;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private DaytimeLogic _daytimeLogic;
+    [SerializeField] private TextMeshProUGUI _mushDamageLabel;
 
     private List<NutrientNode> _nutrientNodes = new List<NutrientNode>();
     
     public static GameplayLogic Instance { get; private set; }
     private int _maxMushroomMass = 0;
+    private Vector3 _damageLabelPosition;
     
     private void Awake()
     {
@@ -32,6 +36,8 @@ public class GameplayLogic : MonoBehaviour
         _mushroomController.Initialize();
         _maxMushroomMass = _mushroomController.AvailableMass;
         _gameOverPanel.SetActive(false);
+        _mushDamageLabel.gameObject.SetActive(false);
+        _damageLabelPosition = _mushDamageLabel.transform.position;
 
         _nutrientNodes = GetComponentsInChildren<NutrientNode>().ToList();
         SetParentTendrilNode(_mushroomController.OriginTendril);
@@ -94,5 +100,19 @@ public class GameplayLogic : MonoBehaviour
     public void ChangeDaytime(bool isDaylight, float nightDamage)
     {
         _mushroomController.EnableNightActions(isDaylight == false, (int)nightDamage);
+    }
+    
+    public void TriggerDamageFeedback(int damage)
+    {
+        _mushDamageLabel.text = damage.ToString();
+        _mushDamageLabel.color = Color.blue;
+        _mushDamageLabel.transform.position = _damageLabelPosition;
+        _mushDamageLabel.gameObject.SetActive(true);
+        var sequence = DOTween.Sequence();
+        sequence.Append(_mushDamageLabel.transform.DOLocalMoveY(-100, 0.5f));
+        sequence.Join(_mushDamageLabel.transform.DOScale(1.5f, 0.25f));
+        sequence.Append(_mushDamageLabel.transform.DOScale(0.5f, 0.25f));
+        sequence.Join(_mushDamageLabel.DOFade(0, 0.25f));
+        sequence.OnComplete(() => _mushDamageLabel.gameObject.SetActive(false)).Play();
     }
 }

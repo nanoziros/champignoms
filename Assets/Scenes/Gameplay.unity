@@ -5956,6 +5956,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
+--- !u!114 &1798590517572737850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1056506881, guid: adbc0a5698c79e5419370894e2fb547d, type: 3}
+  m_PrefabInstance: {fileID: 1798590517572737849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2498661296628388312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6055,6 +6066,10 @@ PrefabInstance:
       propertyPath: _mushMassLabel
       value: 
       objectReference: {fileID: 626505165}
+    - target: {fileID: 2498661295273631178, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
+      propertyPath: _mushDamageLabel
+      value: 
+      objectReference: {fileID: 1798590517572737850}
     - target: {fileID: 2498661295273631178, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
       propertyPath: _foregroundPointerEvent
       value: 

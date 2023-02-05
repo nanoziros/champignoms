@@ -207,6 +207,7 @@ MonoBehaviour:
   _mushMassLabel: {fileID: 0}
   _gameOverPanel: {fileID: 0}
   _daytimeLogic: {fileID: 2498661295273631179}
+  _mushDamageLabel: {fileID: 0}
 --- !u!114 &2498661295273631179
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -178,6 +178,7 @@ namespace Mushroom
 
         private void UpdateMassInstantly(int mass)
         {
+            GameplayLogic.Instance.TriggerDamageFeedback(mass);
             availableMass = Mathf.Max(0, availableMass + mass);
         }
 
