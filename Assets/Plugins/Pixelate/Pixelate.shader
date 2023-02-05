@@ -40,7 +40,7 @@ Shader "Custom/Pixelate"{
 				fixed4 rescol=float4(0,0,0,0);
 				if(_PixelateX>1 || _PixelateY>1){
 					float2 PixelSize=1/float2(_ScreenParams.x,_ScreenParams.y);
-					float2 BlockSize=PixelSize*Pixelate;
+					float2 BlockSize=0.001f*Pixelate;
 					float2 CurrentBlock=float2(
 						(floor(i.uv.x/BlockSize.x)*BlockSize.x),
 						(floor(i.uv.y/BlockSize.y)*BlockSize.y)

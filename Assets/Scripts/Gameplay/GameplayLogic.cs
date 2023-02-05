@@ -39,6 +39,7 @@ public class GameplayLogic : MonoBehaviour
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
         if(tendrilNode == _selectedParentTendril) return;
+        SoundController.Instance.PlaySfx();
         if(_selectedParentTendril != null) {
             _selectedParentTendril.ToggleNode(false);
         }
@@ -64,6 +65,7 @@ public class GameplayLogic : MonoBehaviour
         {
             return;
         }
+        SoundController.Instance.PlaySfx();
         _selectedParentTendril.ToggleNode(false);
         _selectedParentTendril = null;
     }
