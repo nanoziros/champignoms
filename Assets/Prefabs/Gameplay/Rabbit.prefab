@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 20
-  nutrientPoints: 1000
+  nutrientPoints: 1200
 --- !u!1 &3055887869294364370
 GameObject:
   m_ObjectHideFlags: 0
