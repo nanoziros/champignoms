@@ -16,12 +16,15 @@ namespace Gameplay.Entities
         [SerializeField] Transform diamondTransform;
         [SerializeField] Color unselectedColor;
         [SerializeField] Color selectedColor;
+        [SerializeField] GameObject _drainVFXObj;
+
         readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
             new Dictionary<TendrilNode, TendrilLine>();
 
         public bool IsEnabled => spriteRenderer.enabled;
         public bool isSelected;
         private Tween _nodeAnim;
+        private ParticleSystem _currentDrainVFX;
         
         void Awake()
         {
@@ -39,12 +42,28 @@ namespace Gameplay.Entities
                 {
                     continue;
                 }
+                
                 if (Vector3.Distance(availableNutrientNode.transform.position, transform.position) <= absorbRadius + availableNutrientNode.radius)
                 {
+                    if (_currentDrainVFX == null)
+                    {
+                        _currentDrainVFX = Instantiate(_drainVFXObj, transform).GetComponentInChildren<ParticleSystem>();
+                        _currentDrainVFX.Play();
+                    }
+                    else if(_currentDrainVFX.isPlaying == false)
+                    {
+                        _currentDrainVFX.Play();
+                    }
                     nutrientsAbsorbed += absorbAmount;
                     availableNutrientNode.SubtractNutrients(absorbAmount);
                 }
             }
+
+            if (nutrientsAbsorbed == 0 && _currentDrainVFX != null)
+            {
+                _currentDrainVFX.Stop();
+            }
+
             return nutrientsAbsorbed;
         }
 

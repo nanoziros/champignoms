@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   diamondTransform: {fileID: 6835252503890210168}
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 1, g: 0.98724854, b: 0, a: 1}
+  _drainVFXObj: {fileID: 4733240601975836497, guid: 34fdd3203f9acb54fa5d4927e4bcd684, type: 3}
   isSelected: 0
 --- !u!114 &-9011118003149067747
 MonoBehaviour:
