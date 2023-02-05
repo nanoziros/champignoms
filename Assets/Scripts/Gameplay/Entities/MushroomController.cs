@@ -185,6 +185,11 @@ namespace Mushroom
         public void GameOverLogic()
         {
             StopAllCoroutines();
+            originNode.StopGrowth();
+            foreach (var node in _tendrilNodes)
+            {
+                node.StopGrowth();
+            }
         }
     }
 }

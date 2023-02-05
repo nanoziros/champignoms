@@ -15,7 +15,12 @@ namespace Gameplay.Entities
         Sequence _growthSequence; 
         Vector3[] _tendrilNodes = new Vector3[0];
         public List<Vector3> TendrilNodes => _tendrilNodes.ToList();
-        
+
+        public void StopGrowth()
+        {
+            _growthSequence.Kill(false);
+        }
+
         public Sequence GrowNode(TendrilNode originNode, TendrilNode targetNode, float growthSpeed)
         {
             var originPosition = originNode.transform.position;

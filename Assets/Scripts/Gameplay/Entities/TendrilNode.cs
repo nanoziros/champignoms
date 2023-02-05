@@ -141,6 +141,8 @@ namespace Gameplay.Entities
             return false;
         }
 
+        private List<TendrilLine> _connectedTendrilLines = new List<TendrilLine>();
+
         public void AddTendrilNode(TendrilNode tendrilPrefab, Vector3 position, float growthSpeed)
         {
             var newTendrilNode = Instantiate(tendrilPrefab, transform, true);
@@ -173,6 +175,14 @@ namespace Gameplay.Entities
         {
             //TODO: we might need to kill all ongoing transitions on this and childobjects here
             Destroy(gameObject);
+        }
+
+        public void StopGrowth()
+        {
+            foreach (var line in _childrenTendrilNodes.Values)
+            {
+                line.StopGrowth();
+            }
         }
     }
 }

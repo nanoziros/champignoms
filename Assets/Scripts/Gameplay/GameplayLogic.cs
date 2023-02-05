@@ -28,6 +28,7 @@ public class GameplayLogic : MonoBehaviour
     public static GameplayLogic Instance { get; private set; }
     private int _maxMushroomMass = 0;
     private Vector3 _damageLabelPosition;
+    private bool _gameplayRunning = false;
     
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class GameplayLogic : MonoBehaviour
         _gameOverPanel.SetActive(false);
         _mushDamageLabel.gameObject.SetActive(false);
         _damageLabelPosition = _mushDamageLabel.transform.position;
+        _gameplayRunning = true;
 
         _nutrientNodes = GetComponentsInChildren<NutrientNode>().ToList();
         SetParentTendrilNode(_mushroomController.OriginTendril);
@@ -82,6 +84,7 @@ public class GameplayLogic : MonoBehaviour
 
     private void Update()
     {
+        if (_gameplayRunning == false) return;
         var isMushAlive = _mushroomController.AvailableMass > 0;
         if (isMushAlive == false)
         {
@@ -90,6 +93,7 @@ public class GameplayLogic : MonoBehaviour
             _mushroomController.GameOverLogic();
             _mushMassLabel.text = "YOU DIED";
             _gameOverPanel.SetActive(true);
+            _gameplayRunning = false;
             return;
         }
 
