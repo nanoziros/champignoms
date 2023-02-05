@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Gameplay.Entities;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Mushroom
 {
@@ -18,7 +19,8 @@ namespace Mushroom
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         [SerializeField] float maxSpawningGroundHeight = 0;
         [SerializeField] float growthSpeed = 10;
-        [SerializeField] float absorbStrength = 10;
+        [FormerlySerializedAs("absorbStrength")]
+        [SerializeField] float absorbPointsPerSecond = 10;
         [SerializeField] float absorbRadius = 10;
 
         [SerializeField] private PointerEventLogic _poisonButtonPointerEventLogic;
@@ -46,7 +48,7 @@ namespace Mushroom
                 {
                     continue;
                 }
-                absorbedNutrients += tendrilNode.TryGetNutrientsFromSurrounding(nutrientNodes, absorbStrength, absorbRadius, deltaTime);
+                absorbedNutrients += tendrilNode.TryGetNutrientsFromSurrounding(nutrientNodes, absorbPointsPerSecond, absorbRadius, deltaTime);
             }
 
             availableMass += absorbedNutrients;

@@ -38,6 +38,7 @@ public class GameplayLogic : MonoBehaviour
     
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
+        if(tendrilNode == _selectedParentTendril) return;
         if(_selectedParentTendril != null) {
             _selectedParentTendril.ToggleNode(false);
         }

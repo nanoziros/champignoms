@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _daytimeImageLayer: {fileID: 0}
-  _timeFactor: 2160
+  _timeFactor: 1080
   _dayColor: {r: 0, g: 0, b: 0, a: 0}
   _nightColor: {r: 0.16078432, g: 0.14901961, b: 0.25490198, a: 0.39215687}
   _daytimeLabel: {fileID: 0}
@@ -228,7 +228,7 @@ MonoBehaviour:
   _nightAudioClip: {fileID: 8300000, guid: 5a99bd66a0094dd4783a17fe9beca484, type: 3}
   _nightSecondAudioClip: {fileID: 8300000, guid: 647b50f9b7a3f07479f8566855c1c68d, type: 3}
   _minimumTemperatureForMushroom: 8
-  _nightDamageFactor: 4
+  _nightDamageFactor: 3
   _nightTemperatures: 05000000040000000200000000000000fdffffff
 --- !u!1 &2498661296056264713
 GameObject:
