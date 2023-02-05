@@ -19,12 +19,17 @@ public class DaytimeLogic : MonoBehaviour
     [SerializeField] private AudioClip _dayAudioClip;
     [SerializeField] private AudioClip _nightAudioClip;
     [SerializeField] private AudioClip _nightSecondAudioClip;
-    
+
+    [SerializeField] private int _minimumTemperatureForMushroom = 8;
+    [SerializeField] private float _nightDamageFactor = 5.0f;
+    [SerializeField] private List<int> _nightTemperatures = new List<int>();
+
     private float _currentTimeInSeconds = 0.0f;
     private bool _gameplayRunning = false;
     private DateTime _currentDateTime;
     private bool _isDaylight;
     private float _nextTimeCheckInSeconds = 0.0f;
+    private int _nightTemperatureIndex = 0;
     
     void Start()
     {
@@ -35,6 +40,7 @@ public class DaytimeLogic : MonoBehaviour
         _currentTimeInSeconds = _secondsPerDay * 0.5f;
         _nextTimeCheckInSeconds = _currentTimeInSeconds + _secondsPerDay * (7.0f / 24);
         _isDaylight = true;
+        GameplayLogic.Instance.ChangeDaytime(_isDaylight, 0);
         StartGameplay();
     }
 
@@ -64,5 +70,10 @@ public class DaytimeLogic : MonoBehaviour
         _daytimeImageLayer.DOColor(_isDaylight ? _dayColor : _nightColor, 2.0f);
         var nightClip = Random.Range(0.0f, 1.0f) > 0.5f ? _nightSecondAudioClip : _nightAudioClip;
         SoundController.Instance.Stop(true, _isDaylight ? _dayAudioClip : nightClip);
+        GameplayLogic.Instance.ChangeDaytime(_isDaylight, (_minimumTemperatureForMushroom - _nightTemperatures[_nightTemperatureIndex])*_nightDamageFactor);
+        if (_isDaylight == false)
+        {
+            _nightTemperatureIndex = Math.Min(_nightTemperatureIndex+1, _nightTemperatures.Count-1);
+        }
     }
 }
