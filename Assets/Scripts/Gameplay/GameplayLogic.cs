@@ -34,12 +34,16 @@ public class GameplayLogic : MonoBehaviour
         _gameOverPanel.SetActive(false);
 
         _nutrientNodes = GetComponentsInChildren<NutrientNode>().ToList();
+        SetParentTendrilNode(_mushroomController.OriginTendril);
     }
     
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
         if(tendrilNode == _selectedParentTendril) return;
-        SoundController.Instance.PlaySfx();
+        if (SoundController.Instance)
+        {
+            SoundController.Instance.PlaySfx();
+        }
         if(_selectedParentTendril != null) {
             _selectedParentTendril.ToggleNode(false);
         }
