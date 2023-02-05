@@ -71,16 +71,17 @@ public class GameplayLogic : MonoBehaviour
     private void Update()
     {
         var isMushAlive = _mushroomController.AvailableMass > 0;
-        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         if (isMushAlive == false)
         {
             // end game
             _daytimeLogic.PauseGameplay();
+            _mushroomController.GameOverLogic();
             _mushMassLabel.text = "YOU DIED";
             _gameOverPanel.SetActive(true);
             return;
         }
 
+        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         _mushMassLabel.text = "Mushroom Mass : " + _mushroomController.AvailableMass + "/" + _maxMushroomMass;
     }
 

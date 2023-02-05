@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,7 +12,9 @@ namespace Gameplay.Entities
         [SerializeField] float variancePosition = 10;
         [SerializeField] LineRenderer lineRenderer;
         
-        Sequence _growthSequence;
+        Sequence _growthSequence; 
+        Vector3[] _tendrilNodes = new Vector3[0];
+        public List<Vector3> TendrilNodes => _tendrilNodes.ToList();
         
         public Sequence GrowNode(TendrilNode originNode, TendrilNode targetNode, float growthSpeed)
         {
@@ -64,6 +68,10 @@ namespace Gameplay.Entities
                 _growthSequence.Append(DOTween
                     .To(() => lineRenderer.GetPosition(currentMaxIndex), x => lineRenderer.SetPosition(currentMaxIndex, x), targetPositions[currentMaxIndex],
                         targetSpeeds[currentMaxIndex]).SetEase(Ease.Linear));
+                _growthSequence.AppendCallback(() =>
+                {
+                    _tendrilNodes = targetPositions;
+                });
             }
             
             return _growthSequence;
