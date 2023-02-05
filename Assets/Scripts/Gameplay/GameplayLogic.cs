@@ -29,6 +29,7 @@ public class GameplayLogic : MonoBehaviour
     {
         Instance = this;
         _foregroundPointerEvent.SubscribeOnClick(OnForegroundClick);
+        _mushroomController.Initialize();
         _maxMushroomMass = _mushroomController.AvailableMass;
         _gameOverPanel.SetActive(false);
 
@@ -77,8 +78,8 @@ public class GameplayLogic : MonoBehaviour
         _mushMassLabel.text = "Mushroom Mass : " + _mushroomController.AvailableMass + "/" + _maxMushroomMass;
     }
 
-    public void ChangeDaytime(bool isDaylight)
+    public void ChangeDaytime(bool isDaylight, float nightDamage)
     {
-        _mushroomController.EnableNightActions(isDaylight == false);
+        _mushroomController.EnableNightActions(isDaylight == false, (int)nightDamage);
     }
 }
