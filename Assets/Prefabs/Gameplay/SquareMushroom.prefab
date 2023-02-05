@@ -148,3 +148,6 @@ MonoBehaviour:
   minimumSpawnTendrilDistance: 10
   maximumSpawnTendrilDistance: 100
   maxSpawningGroundHeight: 40
+  growthSpeed: 10
+  absorbStrength: 10
+  absorbRadius: 10
