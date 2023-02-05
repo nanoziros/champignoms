@@ -426,85 +426,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1607248353}
     - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: TrailModule.mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.enabled
+      propertyPath: TrailModule.colorOverTrail.minMaxState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: NoiseModule.enabled
+      propertyPath: TrailModule.colorOverTrail.maxGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.atime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.atime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key0.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: TrailModule.enabled
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key2.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key3.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeBySpeedModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: NoiseModule.strength.scalar
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: TrailModule.widthOverTrail.scalar
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.5803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: InitialModule.startColor.minColor.a
-      value: 0.6666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
-      value: -9.011702
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inWeight
-      value: 0.10584527
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724015448465373924, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
-      value: -9.011702
-      objectReference: {fileID: 0}
-    - target: {fileID: 5757247950249916607, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: m_Color.b
-      value: 0.46471164
-      objectReference: {fileID: 0}
-    - target: {fileID: 5757247950249916607, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5566038
-      objectReference: {fileID: 0}
-    - target: {fileID: 5757247950249916607, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: m_Color.r
-      value: 0.48055717
-      objectReference: {fileID: 0}
-    - target: {fileID: 5860977377488707926, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: m_Materials.Array.size
+      propertyPath: TrailModule.colorOverTrail.maxGradient.m_NumAlphaKeys
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5860977377488707926, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e4a41cc7c0cb94fb18701aa9271b30, type: 3}
 --- !u!1001 &3595217997747413132
