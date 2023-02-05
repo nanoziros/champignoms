@@ -468,7 +468,7 @@ MonoBehaviour:
   _nightAudioClip: {fileID: 8300000, guid: 5a99bd66a0094dd4783a17fe9beca484, type: 3}
   _nightSecondAudioClip: {fileID: 8300000, guid: 647b50f9b7a3f07479f8566855c1c68d, type: 3}
   _minimumTemperatureForMushroom: 8
-  _nightDamageFactor: 8
+  _nightDamageFactor: 4
   _nightTemperatures: 05000000040000000200000000000000fdffffff
 --- !u!1 &2498661295531009761
 GameObject:
