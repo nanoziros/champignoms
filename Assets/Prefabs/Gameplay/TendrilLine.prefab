@@ -151,5 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef60d39abcc84ba2b81724b877ec78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSubdivisions: 10
+  maxDistanceSubdivisions: 40
+  variancePosition: 2
   lineRenderer: {fileID: 5424677481455953958}
-  growthSpeed: 10
