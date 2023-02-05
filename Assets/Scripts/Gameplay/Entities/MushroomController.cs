@@ -28,6 +28,7 @@ namespace Mushroom
         List<TendrilNode> _tendrilNodes = new List<TendrilNode>();
         bool _inSpawnTendrilCooldown;
         public int AvailableMass => Mathf.RoundToInt(availableMass);
+        public TendrilNode OriginTendril => originNode;
 
         public void Initialize()
         {
