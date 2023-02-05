@@ -16,6 +16,7 @@ public class DaytimeLogic : MonoBehaviour
     [SerializeField] private Color _dayColor;
     [SerializeField] private Color _nightColor;
     [SerializeField] private TextMeshProUGUI _daytimeLabel;
+    [SerializeField] private TextMeshProUGUI _hourLabel;
     [SerializeField] private AudioClip _dayAudioClip;
     [SerializeField] private AudioClip _nightAudioClip;
     [SerializeField] private AudioClip _nightSecondAudioClip;
@@ -29,7 +30,7 @@ public class DaytimeLogic : MonoBehaviour
     private DateTime _currentDateTime;
     private bool _isDaylight;
     private float _nextTimeCheckInSeconds = 0.0f;
-    private int _nightTemperatureIndex = 0;
+    private int _nightAndDayIndex = 0;
     
     void Start()
     {
@@ -40,8 +41,15 @@ public class DaytimeLogic : MonoBehaviour
         _currentTimeInSeconds = _secondsPerDay * 0.5f;
         _nextTimeCheckInSeconds = _currentTimeInSeconds + _secondsPerDay * (7.0f / 24);
         _isDaylight = true;
+        _daytimeLabel.text = GetDaytimeLabelData();
         GameplayLogic.Instance.ChangeDaytime(_isDaylight, 0);
         StartGameplay();
+    }
+
+    private string GetDaytimeLabelData()
+    {
+        var ret = _isDaylight ? "Day " : "Night ";
+        return ret + (_nightAndDayIndex + 1);
     }
 
     public void StartGameplay()
@@ -62,18 +70,21 @@ public class DaytimeLogic : MonoBehaviour
         }
 
         _currentTimeInSeconds += Time.deltaTime * _timeFactor;
-        _daytimeLabel.text = _currentDateTime.AddSeconds(_currentTimeInSeconds).ToShortTimeString();
+        _hourLabel.text = _currentDateTime.AddSeconds(_currentTimeInSeconds).ToShortTimeString();
         if (!(_nextTimeCheckInSeconds <= _currentTimeInSeconds)) return;
        
         _nextTimeCheckInSeconds += _secondsPerDay * 0.5f;
         _isDaylight = _isDaylight == false;
+        _daytimeLabel.text = GetDaytimeLabelData();
         _daytimeImageLayer.DOColor(_isDaylight ? _dayColor : _nightColor, 2.0f);
         var nightClip = Random.Range(0.0f, 1.0f) > 0.5f ? _nightSecondAudioClip : _nightAudioClip;
         SoundController.Instance.Stop(true, _isDaylight ? _dayAudioClip : nightClip);
-        GameplayLogic.Instance.ChangeDaytime(_isDaylight, (_minimumTemperatureForMushroom - _nightTemperatures[_nightTemperatureIndex])*_nightDamageFactor);
         if (_isDaylight == false)
         {
-            _nightTemperatureIndex = Math.Min(_nightTemperatureIndex+1, _nightTemperatures.Count-1);
+            _nightAndDayIndex++;
         }
+        GameplayLogic.Instance.ChangeDaytime(_isDaylight, 
+            (_minimumTemperatureForMushroom - _nightTemperatures[Math.Min(_nightAndDayIndex, _nightTemperatures.Count-1)])*_nightDamageFactor);
+        
     }
 }
