@@ -13,10 +13,15 @@ namespace Gameplay.Entities
         [SerializeField] TendrilLine tendrilLinePrefab;
         [SerializeField] PointerEventLogic pointerEventLogic;
         [SerializeField] int lifePoints = 2;
+        [SerializeField] Transform diamondTransform;
+        [SerializeField] Color unselectedColor;
+        [SerializeField] Color selectedColor;
         readonly Dictionary<TendrilNode, TendrilLine> _childrenTendrilNodes =
             new Dictionary<TendrilNode, TendrilLine>();
 
         public bool IsEnabled => spriteRenderer.enabled;
+        public bool isSelected;
+        private Tween _nodeAnim;
         
         void Awake()
         {
@@ -46,6 +51,22 @@ namespace Gameplay.Entities
         void OnClick(PointerEventData pointerEventData)
         {
             GameplayLogic.Instance.SetParentTendrilNode(this);
+        }
+
+        public void ToggleNode(bool toggle)
+        {
+
+            spriteRenderer.color = toggle ? selectedColor : unselectedColor;
+            if(toggle && _nodeAnim == null) {
+                _nodeAnim = diamondTransform
+                    .DOScale(new Vector3(1.5f, 1.5f, 1.5f), 2f)
+                    .SetEase(Ease.Linear)
+                    .SetLoops(-1, LoopType.Yoyo).SetSpeedBased().Play();
+                return;
+            }
+            _nodeAnim.Pause();
+            diamondTransform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+            _nodeAnim = null;
         }
         
         void SetDelayedActivation(Tween delayTween)

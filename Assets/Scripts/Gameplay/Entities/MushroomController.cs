@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Gameplay.Entities;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Mushroom
 {
@@ -17,13 +19,26 @@ namespace Mushroom
         [SerializeField] float maximumSpawnTendrilDistance = 10;
         [SerializeField] float maxSpawningGroundHeight = 0;
         [SerializeField] float growthSpeed = 10;
-        [SerializeField] float absorbStrength = 10;
+        [FormerlySerializedAs("absorbStrength")]
+        [SerializeField] float absorbPointsPerSecond = 10;
         [SerializeField] float absorbRadius = 10;
 
+        [SerializeField] private PointerEventLogic _poisonButtonPointerEventLogic;
+        
         List<TendrilNode> _tendrilNodes = new List<TendrilNode>();
         bool _inSpawnTendrilCooldown;
         public int AvailableMass => Mathf.RoundToInt(availableMass);
+
+        public void Initialize()
+        {
+            _poisonButtonPointerEventLogic.SubscribeOnClick(OnClick);
+        }
         
+        void OnClick(PointerEventData pointerEventData)
+        {
+            
+        }
+
         public void UpdateMushroomNodes(List<NutrientNode> nutrientNodes, float deltaTime)
         {
             var absorbedNutrients = 0f;
@@ -33,7 +48,7 @@ namespace Mushroom
                 {
                     continue;
                 }
-                absorbedNutrients += tendrilNode.TryGetNutrientsFromSurrounding(nutrientNodes, absorbStrength, absorbRadius, deltaTime);
+                absorbedNutrients += tendrilNode.TryGetNutrientsFromSurrounding(nutrientNodes, absorbPointsPerSecond, absorbRadius, deltaTime);
             }
 
             availableMass += absorbedNutrients;
@@ -49,13 +64,13 @@ namespace Mushroom
 
             parentNode.AddTendrilNode(tendrilPrefab, targetPosition, growthSpeed);
             var distance = Vector3.Distance(targetPosition, parentNode.transform.position);
-            StartCoroutine(UpdateMass(-newTendrilCost, distance / growthSpeed));
+            StartCoroutine(UpdateMassOnDuration(-newTendrilCost, distance / growthSpeed));
             StartCoroutine(SpawnTendrilCooldown());
             _tendrilNodes = GetAllTendrilNodes();
             return true;
         }
         
-        public IEnumerator UpdateMass(int mass, float totalTime)
+        public IEnumerator UpdateMassOnDuration(int mass, float totalTime)
         {
             var target = Mathf.Max(0, availableMass + mass);
             var currentTime = 0.0f;
@@ -76,7 +91,7 @@ namespace Mushroom
                 yield return new WaitForEndOfFrame();
             }
         }
-        
+
         public List<TendrilNode> GetAllTendrilNodes()
         {
             return originNode.GetAllTendrilNodes();
@@ -128,9 +143,40 @@ namespace Mushroom
             _inSpawnTendrilCooldown = false;
         }
 
-        public void EnableNightActions(bool isDaylight)
+        private Coroutine _nightDamageRoutine;
+        public void EnableNightActions(bool isNight, int nightDamage)
         {
+            _poisonButtonPointerEventLogic.gameObject.SetActive(isNight);
+            if (isNight)
+            {
+                _nightDamageRoutine = StartCoroutine(NightTemperatureDamageRoutine((nightDamage)));
+                Debug.Log("Night Damage starts");
+                return;
+            }
+
+            if (_nightDamageRoutine == null) return;
             
+            StopCoroutine(_nightDamageRoutine);
+            Debug.Log("Night Damage stopped");
+        }
+
+        private IEnumerator NightTemperatureDamageRoutine(int nightDamage)
+        {
+            while (true)
+            {
+                UpdateMassInstantly(-nightDamage);
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        private void UpdateMassInstantly(int mass)
+        {
+            availableMass = Mathf.Max(0, availableMass + mass);
+        }
+
+        public void GameOverLogic()
+        {
+            StopAllCoroutines();
         }
     }
 }

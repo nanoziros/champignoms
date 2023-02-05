@@ -29,6 +29,7 @@ public class GameplayLogic : MonoBehaviour
     {
         Instance = this;
         _foregroundPointerEvent.SubscribeOnClick(OnForegroundClick);
+        _mushroomController.Initialize();
         _maxMushroomMass = _mushroomController.AvailableMass;
         _gameOverPanel.SetActive(false);
 
@@ -37,7 +38,12 @@ public class GameplayLogic : MonoBehaviour
     
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
+        if(tendrilNode == _selectedParentTendril) return;
+        if(_selectedParentTendril != null) {
+            _selectedParentTendril.ToggleNode(false);
+        }
         _selectedParentTendril = tendrilNode;
+        _selectedParentTendril.ToggleNode(true);
     }
 
     private void OnForegroundClick(PointerEventData pointerEventData)
@@ -58,27 +64,29 @@ public class GameplayLogic : MonoBehaviour
         {
             return;
         }
+        _selectedParentTendril.ToggleNode(false);
         _selectedParentTendril = null;
     }
 
     private void Update()
     {
         var isMushAlive = _mushroomController.AvailableMass > 0;
-        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         if (isMushAlive == false)
         {
             // end game
             _daytimeLogic.PauseGameplay();
+            _mushroomController.GameOverLogic();
             _mushMassLabel.text = "YOU DIED";
             _gameOverPanel.SetActive(true);
             return;
         }
 
+        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         _mushMassLabel.text = "Mushroom Mass : " + _mushroomController.AvailableMass + "/" + _maxMushroomMass;
     }
 
-    public void ChangeDaytime(bool isDaylight)
+    public void ChangeDaytime(bool isDaylight, float nightDamage)
     {
-        _mushroomController.EnableNightActions(isDaylight == false);
+        _mushroomController.EnableNightActions(isDaylight == false, (int)nightDamage);
     }
 }

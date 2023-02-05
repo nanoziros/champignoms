@@ -149,5 +149,6 @@ MonoBehaviour:
   maximumSpawnTendrilDistance: 100
   maxSpawningGroundHeight: 40
   growthSpeed: 10
-  absorbStrength: 10
+  absorbPointsPerSecond: 15
   absorbRadius: 10
+  _poisonButtonPointerEventLogic: {fileID: 0}
