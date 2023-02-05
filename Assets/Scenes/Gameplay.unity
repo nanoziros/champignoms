@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 2011834896}
-  bottomLimit: -325
+  bottomLimit: -675
   SmoothTime: 2
   direction: {x: 0, y: 0, z: 0}
 --- !u!20 &2011834896
@@ -332,7 +332,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 100
+  orthographic size: 110
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -560,10 +560,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1597483658, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2498661295273631176, guid: 65120036f61cba94ab1ae25ba2cb1f6e, type: 3}
       propertyPath: m_Name
       value: Gameplay
