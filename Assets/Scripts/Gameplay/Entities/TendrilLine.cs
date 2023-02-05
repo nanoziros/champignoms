@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ namespace Gameplay.Entities
 {
     public class TendrilLine : MonoBehaviour
     {
+        [SerializeField] int subdivisions = 2;
         [SerializeField] LineRenderer lineRenderer;
         Tween _growthAnimation;
         

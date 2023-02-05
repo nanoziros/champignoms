@@ -40,7 +40,6 @@ namespace Gameplay.Entities
                     availableNutrientNode.SubtractNutrients(absorbAmount);
                 }
             }
-
             return nutrientsAbsorbed;
         }
 
