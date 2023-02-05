@@ -311,8 +311,9 @@ MonoBehaviour:
   _dayColor: {r: 0, g: 0, b: 0, a: 0}
   _nightColor: {r: 0.16078432, g: 0.14901961, b: 0.25490198, a: 0.39215687}
   _daytimeLabel: {fileID: 0}
-  _dayAudioClip: {fileID: 8300000, guid: 95cbf534ee00bbb4bacda2ea9ee0c313, type: 3}
-  _nightAudioClip: {fileID: 8300000, guid: e7712347e67275d40ac030b62e21f576, type: 3}
+  _dayAudioClip: {fileID: 8300000, guid: aa088be56fe0ef146bfc2164e1203c8e, type: 3}
+  _nightAudioClip: {fileID: 8300000, guid: 5a99bd66a0094dd4783a17fe9beca484, type: 3}
+  _nightSecondAudioClip: {fileID: 8300000, guid: 647b50f9b7a3f07479f8566855c1c68d, type: 3}
 --- !u!1 &2498661295531009761
 GameObject:
   m_ObjectHideFlags: 0
