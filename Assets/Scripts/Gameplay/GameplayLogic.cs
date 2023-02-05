@@ -76,4 +76,9 @@ public class GameplayLogic : MonoBehaviour
 
         _mushMassLabel.text = "Mushroom Mass : " + _mushroomController.AvailableMass + "/" + _maxMushroomMass;
     }
+
+    public void ChangeDaytime(bool isDaylight)
+    {
+        _mushroomController.EnableNightActions(isDaylight == false);
+    }
 }

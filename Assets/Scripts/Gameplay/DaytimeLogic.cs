@@ -35,6 +35,7 @@ public class DaytimeLogic : MonoBehaviour
         _currentTimeInSeconds = _secondsPerDay * 0.5f;
         _nextTimeCheckInSeconds = _currentTimeInSeconds + _secondsPerDay * (7.0f / 24);
         _isDaylight = true;
+        GameplayLogic.Instance.ChangeDaytime(_isDaylight);
         StartGameplay();
     }
 
@@ -64,5 +65,6 @@ public class DaytimeLogic : MonoBehaviour
         _daytimeImageLayer.DOColor(_isDaylight ? _dayColor : _nightColor, 2.0f);
         var nightClip = Random.Range(0.0f, 1.0f) > 0.5f ? _nightSecondAudioClip : _nightAudioClip;
         SoundController.Instance.Stop(true, _isDaylight ? _dayAudioClip : nightClip);
+        GameplayLogic.Instance.ChangeDaytime(_isDaylight);
     }
 }

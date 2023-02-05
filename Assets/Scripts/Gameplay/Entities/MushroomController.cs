@@ -23,7 +23,7 @@ namespace Mushroom
         List<TendrilNode> _tendrilNodes = new List<TendrilNode>();
         bool _inSpawnTendrilCooldown;
         public int AvailableMass => Mathf.RoundToInt(availableMass);
-
+        
         public void UpdateMushroomNodes(List<NutrientNode> nutrientNodes, float deltaTime)
         {
             var absorbedNutrients = 0f;
@@ -126,6 +126,11 @@ namespace Mushroom
             _inSpawnTendrilCooldown = true;
             yield return new WaitForSeconds(spawnTendrilNodeCooldown);
             _inSpawnTendrilCooldown = false;
+        }
+
+        public void EnableNightActions(bool isDaylight)
+        {
+            
         }
     }
 }
