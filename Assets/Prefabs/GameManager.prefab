@@ -304,3 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadeOutTime: 1.5
+  clips:
+  - {fileID: 8300000, guid: 289c8333195e6644ab094c65d25b850a, type: 3}
+  - {fileID: 8300000, guid: e94ce1541b850a149a9f3f2172c3f930, type: 3}
+  - {fileID: 8300000, guid: 673a3ddeb24d30e40831687777442c3e, type: 3}
