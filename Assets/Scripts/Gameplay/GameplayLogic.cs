@@ -38,7 +38,11 @@ public class GameplayLogic : MonoBehaviour
     
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
+        if(_selectedParentTendril != null) {
+            _selectedParentTendril.ToggleNode(false);
+        }
         _selectedParentTendril = tendrilNode;
+        _selectedParentTendril.ToggleNode(true);
     }
 
     private void OnForegroundClick(PointerEventData pointerEventData)
@@ -59,22 +63,24 @@ public class GameplayLogic : MonoBehaviour
         {
             return;
         }
+        _selectedParentTendril.ToggleNode(false);
         _selectedParentTendril = null;
     }
 
     private void Update()
     {
         var isMushAlive = _mushroomController.AvailableMass > 0;
-        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         if (isMushAlive == false)
         {
             // end game
             _daytimeLogic.PauseGameplay();
+            _mushroomController.GameOverLogic();
             _mushMassLabel.text = "YOU DIED";
             _gameOverPanel.SetActive(true);
             return;
         }
 
+        _mushroomController.UpdateMushroomNodes(_nutrientNodes, Time.deltaTime);
         _mushMassLabel.text = "Mushroom Mass : " + _mushroomController.AvailableMass + "/" + _maxMushroomMass;
     }
 

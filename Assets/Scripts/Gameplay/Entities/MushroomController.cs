@@ -172,5 +172,9 @@ namespace Mushroom
             availableMass = Mathf.Max(0, availableMass + mass);
         }
 
+        public void GameOverLogic()
+        {
+            StopAllCoroutines();
+        }
     }
 }
