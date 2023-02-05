@@ -38,7 +38,11 @@ public class GameplayLogic : MonoBehaviour
     
     public void SetParentTendrilNode(TendrilNode tendrilNode)
     {
+        if(_selectedParentTendril != null) {
+            _selectedParentTendril.ToggleNode(false);
+        }
         _selectedParentTendril = tendrilNode;
+        _selectedParentTendril.ToggleNode(true);
     }
 
     private void OnForegroundClick(PointerEventData pointerEventData)
@@ -59,6 +63,7 @@ public class GameplayLogic : MonoBehaviour
         {
             return;
         }
+        _selectedParentTendril.ToggleNode(false);
         _selectedParentTendril = null;
     }
 
